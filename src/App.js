@@ -18,17 +18,6 @@ class App extends Component {
     })
   };
 
-  nameChangedHandler = event => {
-    this.setState({
-        persons: [
-          {name: 'Gaëtan', age: 31},
-          {name: event.target.value, age: 30},
-          {name: 'Sandra', age: 32}
-        ]
-      }
-    )
-  }
-
   render() {
     const style = {
       backgroundColor: 'white',
@@ -43,22 +32,9 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}>
-            My Hobby: Volley-Ball
-          </Person>
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            changed={this.nameChangedHandler}>
-            My Hobby: Racing
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}>
-            My Hobby: Dancing
-          </Person>
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} />
+          })}
         </div>
       );
     }
